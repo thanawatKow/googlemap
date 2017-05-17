@@ -2,33 +2,24 @@
 
 class Welcome extends CI_Controller {
 
-	function __construct()
-	{
-	parent::__construct();
-	$this->load->library('googlemaps');
-
-	}
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -  
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in 
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see http://codeigniter.com/user_guide/general/urls.html
+	 */
 	public function index()
 	{
-		$config = array();
-$config['center'] = 'auto';
-$config['onboundschanged'] = 'if (!centreGot) {
-	var mapCentre = map.getCenter();
-	marker_0.setOptions({
-		position: new google.maps.LatLng(mapCentre.lat(), mapCentre.lng())
-	});
-}
-centreGot = true;';
-$this->googlemaps->initialize($config);
-
-// set up the marker ready for positioning
-// once we know the users location
-$marker = array();
-$this->googlemaps->add_marker($marker);
-$data['map'] = $this->googlemaps->create_map();
-
-
-		$this->load->view('index',$data);
+		$this->load->view('welcome_message');
 	}
 }
 
